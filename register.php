@@ -22,10 +22,9 @@ if (isset($_POST['token']) && isset($_SESSION['token']) && !empty($_POST['token'
             //echo 'Mobile : '.$mobile;
         }//End of if else
         
-        /*echo $_SESSION['token'].' === '.$_POST['token'];
-        echo 'Token matched';
+        //Unset token and destroy session
         unset($_SESSION['token']);
-        session_destroy();*/
+        session_destroy();
     } else {
         echo 'Unauthorized access : Token does not matched';
     }//End of if else
