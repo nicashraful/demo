@@ -22,6 +22,27 @@ if (isset($_POST['token']) && isset($_SESSION['token']) && !empty($_POST['token'
             //echo 'Mobile : '.$mobile;
         }//End of if else
         
+        $file_name=$_FILES['docfile']['name'];
+        $file_type=$_FILES['docfile']['type'];
+        $file_size = $_FILES['docfile']['size']; //in bytes
+        $file_tmp = $_FILES['docfile']['tmp_name'];
+        $file_ext = strrchr($file_name, '.');
+
+        if (is_executable($file_tmp)) {
+            echo 'File is executable and will harm the application';
+        } elseif ($file_size && (in_array($file_ext, array(".jpg",".jpeg",".gif",".png"))) == false) {
+            echo 'Only jpg, jpeg, gif, png are allowed';
+        } elseif($file_size > 1024*100) {
+            echo 'File size must be under 100KB';
+        } else {
+            echo $file_name.' : '.$file_type.' : '.$file_ext;
+            if (move_uploaded_file($file_tmp, 'uploads/' . $file_name)) {
+                echo "<h1>File Upload Success</h1>";
+            } else {
+                echo "<h1>File Upload not successfull</h1>";
+            }//End of if else
+        }//End of if else
+
         //Unset token and destroy session
         unset($_SESSION['token']);
         session_destroy();

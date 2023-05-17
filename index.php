@@ -39,7 +39,7 @@ $token = $_SESSION['token'];
     </head>
     <body>
         <div class="w3-container w3-half w3-margin-top" style="width: 100%">
-            <form id="frm-register" method="post" action="register.php" class="w3-container w3-card-4">
+            <form id="frm-register" method="post" action="register.php" class="w3-container w3-card-4" enctype="multipart/form-data">
                 <input type="text" name="token" value="<?php echo $token; ?>" />
                 <p>
                     <label>Name (Only Letter ans space are allowed)</label>
@@ -57,6 +57,10 @@ $token = $_SESSION['token'];
                 <p>
                     <label>Address</label>
                     <input id="address" name="address" class="w3-input" type="text" maxlength="30"  autocomplete="off" />
+                </p>
+                <p>
+                    <label>File</label>
+                    <input id="docfile" name="docfile" class="w3-input" type="file" accept=".png, .jpeg, .jpg, .gif, .pdf" />
                 </p>
                 <p style="text-align: center"> <button id="btn-submit" class="w3-button w3-section w3-teal w3-ripple" type="submit"> Submit </button></p>
             </form>
